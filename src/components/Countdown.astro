@@ -1,6 +1,6 @@
 ---
 // src/components/Countdown.astro
-const { targetDate = "2025-04-25T18:00:00" } = Astro.props; // Fecha del evento (consistente)
+const { targetDate = "2025-04-25T18:00:00" } = Astro.props;
 ---
 
 <div class="countdown">
@@ -35,7 +35,7 @@ const { targetDate = "2025-04-25T18:00:00" } = Astro.props; // Fecha del evento 
             if (countdownContainer) {
                 countdownContainer.innerHTML = `<p style="color: var(--color-accent); font-size: 1.5rem; text-shadow: none;">¡El evento ha comenzado! 🎉</p>`;
             }
-            clearInterval(intervalId); // Detiene el intervalo
+            clearInterval(intervalId);
             return;
         }
 
@@ -80,7 +80,7 @@ const { targetDate = "2025-04-25T18:00:00" } = Astro.props; // Fecha del evento 
     .countdown span {
         font-size: 2.5rem;
         font-weight: bold;
-        color: #ff00ff; /* Mantenido el color fucsia original del countdown */
+        color: #ff00ff;
         text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
     }
     .countdown small {

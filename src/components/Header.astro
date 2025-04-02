@@ -24,10 +24,8 @@
 
 <style>
     :root {
-        --logo-height: 100px; /* Define la altura base del logo */
-        --header-height: calc(
-            var(--logo-height) + 1rem
-        ); /* Header se adapta al logo */
+        --logo-height: 100px;
+        --header-height: calc(var(--logo-height) + 1rem);
     }
 
     /* Estilos base del header */
@@ -40,9 +38,8 @@
         z-index: 1000;
         border-bottom: 1px solid var(--color-accent-dark);
         padding: 0.5rem 0;
-        min-height: var(--header-height); /* Usa la variable */
+        min-height: var(--header-height);
     }
-
     /* Contenedor flexible */
     .container {
         display: flex;
@@ -63,18 +60,17 @@
     }
 
     .logo img {
-        height: var(--logo-height); /* Usa la variable */
+        height: var(--logo-height);
         width: auto;
-        max-width: 200px; /* Limita el ancho máximo */
+        max-width: 200px;
         transition: transform 0.3s ease;
-        object-fit: contain; /* Mantiene proporciones */
+        object-fit: contain;
     }
 
     .logo:hover img {
         transform: scale(1.05);
     }
 
-    /* Estilos de navegación */
     nav {
         display: flex;
         gap: 1.5rem;
@@ -98,7 +94,6 @@
         border-bottom-color: var(--color-accent);
     }
 
-    /* Media queries responsive */
     @media (max-width: 768px) {
         :root {
             --logo-height: 50px;

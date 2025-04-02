@@ -1,15 +1,15 @@
 ---
 import MainLayout from "../layouts/Layout.astro";
 import Countdown from "../components/Countdown.astro";
-import EventTimeline from "../components/EventTimeline.astro"; // Si quieres mostrar el timeline aquí también
-import FreeEntry from "../components/FreeEntry.astro"; // Importa la sección de info/entradas
-import FAQ from "../components/FAQ.astro"; // Importa FAQ si es componente separado
+import EventTimeline from "../components/EventTimeline.astro";
+import FreeEntry from "../components/FreeEntry.astro";
+import FAQ from "../components/FAQ.astro";
 // Importa aquí los futuros componentes para Artistas y Ubicación
 // import ArtistSection from '../components/ArtistSection.astro';
 // import LocationSection from '../components/LocationSection.astro';
 import LocationMap from "../components/LocationMap.astro";
-// Asegúrate de que la ruta a la imagen es correcta y está optimizada
-import fondoOptimizado from "../assets/fondo-mollettronika.jpg"; // Asume que esta imagen existe y está optimizada
+
+import fondoOptimizado from "../assets/fondo-mollettronika.jpg";
 
 const EVENT_DATE = "2025-04-25T18:00:00";
 const EVENT_DATE_DISPLAY = "25 Abril 2025";
@@ -84,21 +84,17 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
     /* Estilos específicos de index.astro */
     .hero {
         position: relative;
-        /* Ajusta la altura si no quieres que ocupe toda la pantalla inicial menos el header */
-        /* Por ejemplo: height: calc(100vh - var(--header-height)); */
-        height: 100vh; /* Mantenido 100vh para efecto full screen inicial */
+        height: 100vh;
         overflow: hidden;
-        margin-top: calc(
-            -1 * var(--header-height)
-        ); /* Compensa el padding-top de main para que el hero empiece arriba */
-        display: flex; /* Añadido para centrar contenido */
-        align-items: center; /* Añadido para centrar contenido */
-        justify-content: center; /* Añadido para centrar contenido */
+        margin-top: calc(-1 * var(--header-height));
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .hero-bg {
         position: absolute;
-        inset: 0; /* Equivalente a top, right, bottom, left = 0 */
+        inset: 0;
         z-index: 0;
     }
 
@@ -107,7 +103,7 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
         height: 100%;
         object-fit: cover;
         object-position: center;
-        animation: zoom-effect 20s infinite alternate ease-in-out; /* suavizado */
+        animation: zoom-effect 20s infinite alternate ease-in-out;
     }
 
     @keyframes zoom-effect {
@@ -116,7 +112,7 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
         }
         100% {
             transform: scale(1.08);
-        } /* Ligero aumento */
+        }
     }
 
     .overlay {
@@ -127,7 +123,6 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
             rgba(0, 0, 0, 0.7) 0%,
             /* Más oscuro arriba */ rgba(var(--color-accent-dark-rgb), 0.6) 80%,
             /* Tinte rojo oscuro abajo */ rgba(var(--color-dark-rgb), 0.9) 100%
-                /* Casi negro al final */
         );
         z-index: 1;
     }
@@ -141,13 +136,13 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
     }
 
     h1 {
-        font-size: clamp(3rem, 10vw, 5.5rem); /* Un poco más grande */
+        font-size: clamp(3rem, 10vw, 5.5rem);
         margin: 0 0 1rem 0;
         text-transform: uppercase;
-        line-height: 1.1; /* Más ajustado */
+        line-height: 1.1;
         color: var(--color-light);
-        text-shadow: 0 0 15px var(--color-accent); /* Sombra más pronunciada */
-        font-weight: 900; /* Más grueso si la fuente lo permite */
+        text-shadow: 0 0 15px var(--color-accent);
+        font-weight: 900;
     }
 
     h1 span {
@@ -156,18 +151,15 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
     }
 
     .event-date {
-        font-size: clamp(1.2rem, 4vw, 1.6rem); /* Tamaño adaptable */
-        margin-bottom: 1.5rem; /* Reducido */
+        font-size: clamp(1.2rem, 4vw, 1.6rem);
+        margin-bottom: 1.5rem;
         color: var(--color-light);
         text-shadow: 0 0 8px var(--color-accent-dark);
         font-weight: 700;
     }
 
     .free-entry-text {
-        background-color: rgba(
-            var(--color-accent-dark-rgb),
-            0.8
-        ); /* Fondo semi-transparente */
+        background-color: rgba(var(--color-accent-dark-rgb), 0.8);
         color: var(--color-light);
         padding: 0.8rem 1.8rem;
         border-radius: 50px;
@@ -191,25 +183,24 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
         transition:
             transform 0.3s,
             box-shadow 0.3s;
-        display: inline-block; /* Asegura que el margin-top funcione */
+        display: inline-block;
         border: none;
     }
     .hero-cta:hover {
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.4);
-        color: var(--color-light); /* Mantiene el color del texto */
+        color: var(--color-light);
     }
 
     /* Estilos para secciones placeholder y otras */
     .container {
-        /* Contenedor general para centrar contenido */
         max-width: 900px;
         margin: 0 auto;
         padding: 0 1rem; /* Padding lateral */
     }
 
     .lineup-summary {
-        background: #080808; /* Fondo ligeramente distinto */
+        background: #080808;
         padding: 4rem 1rem;
         text-align: center;
     }
@@ -244,7 +235,7 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
         border-top: 1px solid var(--color-accent-dark); /* Separador visual */
     }
     .placeholder-section.location-section {
-        background-color: #050505; /* Fondo un poco diferente para la ubicación */
+        background-color: #050505;
     }
     .placeholder-section h2 {
         color: var(--color-accent-light);

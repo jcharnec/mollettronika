@@ -63,22 +63,16 @@ const headerHeight = "80px";
             }
 
             main {
-                padding-top: var(
-                    --header-height
-                ); /* Espacio para el Header fijo */
-                min-height: calc(
-                    100vh - var(--header-height)
-                ); /* Asegura que el footer no suba en páginas cortas */
+                padding-top: var(--header-height);
+                min-height: calc(100vh - var(--header-height));
                 display: flex;
                 flex-direction: column;
             }
             main > section {
-                /* Da espacio entre secciones si hay varias en una página */
                 padding-top: 3rem;
                 padding-bottom: 3rem;
             }
             main > section:first-child {
-                /* Evita doble padding si main ya tiene */
                 padding-top: 0;
             }
 
@@ -101,7 +95,7 @@ const headerHeight = "80px";
             img {
                 max-width: 100%;
                 height: auto;
-                display: block; /* Evita espacio extra debajo de las imágenes */
+                display: block;
             }
         </style>
     </head>

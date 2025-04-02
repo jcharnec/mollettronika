@@ -13,7 +13,6 @@
 //     title = "Mapa de Google Maps mostrando Mercat Vell, Mollet del Vallès"
 // } = Astro.props;
 
-// ¡IMPORTANTE! Reemplaza el valor de 'src' con el código iframe que copiaste de Google Maps
 const mapSrc =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2985.517727334604!2d2.210370676679475!3d41.53890797128842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4c7dfb0187e1b%3A0x7c364cf88118833!2sMercat%20Vell!5e0!3m2!1ses!2ses!4v1712108199912!5m2!1ses!2ses";
 ---
@@ -31,25 +30,25 @@ const mapSrc =
 
 <style>
     .map-container {
-        max-width: 800px; /* Limita el ancho máximo del mapa */
-        width: 100%; /* Ocupa el ancho disponible hasta el máximo */
-        margin: 2rem auto; /* Centra el contenedor y añade espacio vertical */
-        border-radius: 8px; /* Bordes redondeados */
-        overflow: hidden; /* Asegura que el iframe respete el borde redondeado */
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
-        position: relative; /* Para posible contenido superpuesto si se necesita */
+        max-width: 800px;
+        width: 100%;
+        margin: 2rem auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        position: relative;
     }
     .map-container iframe {
-        display: block; /* Elimina espacio extra debajo del iframe */
-        width: 100%; /* Asegura que el iframe llene el contenedor */
+        display: block;
+        width: 100%;
     }
     @media (max-width: 768px) {
         .map-container {
-            max-width: 95%; /* Permite que sea un poco más ancho en pantallas pequeñas */
-            margin: 1.5rem auto; /* Ajusta margen vertical */
+            max-width: 95%;
+            margin: 1.5rem auto;
         }
         .map-container iframe {
-            height: 300px; /* Reduce la altura en móviles */
+            height: 300px;
         }
     }
 </style>
