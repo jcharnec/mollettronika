@@ -23,15 +23,9 @@ const EVENT_LOCATION = "Mercat Vell, Mollet";
 
 <style>
     .lineup-section {
-        /* Eliminado padding-top si se maneja en Layout.astro */
-        padding: 4rem 1rem 4rem; /* Ajustado padding vertical */
-        background: linear-gradient(
-            to bottom,
-            #050000,
-            #1a0505,
-            #000000
-        ); /* Degradado sutil */
-        min-height: 80vh; /* Asegura algo de altura */
+        padding: 4rem 1rem 4rem;
+        background: linear-gradient(to bottom, #050000, #1a0505, #000000);
+        min-height: 80vh;
         color: white;
     }
     .container {
@@ -72,7 +66,7 @@ const EVENT_LOCATION = "Mercat Vell, Mollet";
     .cta-button:hover {
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.4);
-        color: white; /* Mantiene color texto */
+        color: white;
     }
 
     @media (max-width: 768px) {
