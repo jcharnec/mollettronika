@@ -1,0 +1,54 @@
+---
+// src/components/FreeEntryBadge.astro
+---
+
+<div class="free-badge">🔥 ENTRADA GRATIS</div>
+
+<style>
+    .free-badge {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(
+            45deg,
+            var(--color-accent),
+            var(--color-accent-light)
+        );
+        color: var(
+            --color-dark
+        ); /* Cambiado a negro para mejor contraste con el fondo rojo/rosa */
+        padding: 0.8rem 1.8rem;
+        border-radius: 50px;
+        z-index: 999;
+        font-weight: bold;
+        font-size: 1.1rem;
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        animation: pulse 3s infinite;
+        text-transform: uppercase;
+        cursor: default; /* Para indicar que no es clickeable */
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .free-badge {
+            bottom: 15px;
+            right: 15px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>

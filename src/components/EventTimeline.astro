@@ -1,0 +1,84 @@
+---
+// src/components/EventTimeLine.astro
+---
+
+<div class="timeline">
+    <!-- Primera actuación -->
+    <div class="timeline-item">
+        <div class="time">19:00 - 20:30</div>
+        <div class="artist">SDK101</div>
+        <div class="genre">Deep House</div>
+    </div>
+
+    <!-- Segunda actuación -->
+    <div class="timeline-item">
+        <div class="time">20:30 - 22:00</div>
+        <div class="artist">Soveron b2b HotTape</div>
+        <div class="genre">Techno</div>
+    </div>
+
+    <!-- Tercera actuación -->
+    <div class="timeline-item">
+        <div class="time">22:00 - 23:30</div>
+        <div class="artist">Carol NYX</div>
+        <div class="genre">Psy Trance - Techno</div>
+    </div>
+
+    <!-- Cuarta actuación -->
+    <div class="timeline-item">
+        <div class="time">23:30 - 01:00</div>
+        <div class="artist">Rowsi b2b Fractal</div>
+        <div class="genre">Hard Techno - Hard Groove</div>
+    </div>
+</div>
+
+<style>
+    .timeline {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        border: 1px solid #ff0000;
+    }
+    .timeline-item {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+        border-left: 3px solid #ff0000;
+        transition: all 0.3s;
+    }
+    .timeline-item:hover {
+        background: rgba(255, 0, 0, 0.1);
+        transform: translateX(5px);
+    }
+    .timeline-item.highlight {
+        border-left-width: 5px;
+        background: rgba(255, 0, 0, 0.05);
+    }
+    .time {
+        color: #ff0000;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    .artist {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+        letter-spacing: 1px;
+    }
+    .genre {
+        color: #aaa;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .timeline {
+            padding: 1rem;
+        }
+        .artist {
+            font-size: 1.4rem;
+        }
+    }
+</style>

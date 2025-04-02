@@ -1,11 +1,303 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import MainLayout from "../layouts/Layout.astro";
+import Countdown from "../components/Countdown.astro";
+import EventTimeline from "../components/EventTimeline.astro"; // Si quieres mostrar el timeline aquí también
+import FreeEntry from "../components/FreeEntry.astro"; // Importa la sección de info/entradas
+import FAQ from "../components/FAQ.astro"; // Importa FAQ si es componente separado
+// Importa aquí los futuros componentes para Artistas y Ubicación
+// import ArtistSection from '../components/ArtistSection.astro';
+// import LocationSection from '../components/LocationSection.astro';
+import LocationMap from "../components/LocationMap.astro";
+// Asegúrate de que la ruta a la imagen es correcta y está optimizada
+import fondoOptimizado from "../assets/fondo-mollettronika.jpg"; // Asume que esta imagen existe y está optimizada
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const EVENT_DATE = "2025-04-23T18:00:00";
+const EVENT_DATE_DISPLAY = "23 Abril 2025";
+const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout title="Mollettronika | Festival de Música Electrónica">
+    <section class="hero">
+        <div class="hero-bg">
+            <picture>
+                <source srcset={fondoOptimizado.src} type="image/webp" />
+                <img
+                    src={fondoOptimizado.src}
+                    alt="Ambiente de fiesta electrónica Mollettronika"
+                    loading="eager"
+                    class="full-cover-img"
+                    width="1920"
+                    height="1080"
+                />
+            </picture>
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Moll<span>et</span>tronika</h1>
+            <p class="event-date">{EVENT_DATE_DISPLAY} | {EVENT_LOCATION}</p>
+            <Countdown targetDate={EVENT_DATE} />
+            <p class="free-entry-text">
+                🎟️ ENTRADA LIBRE HASTA COMPLETAR AFORO
+            </p>
+            <a href="/lineup" class="cta-button hero-cta"
+                >Ver Line Up Completo</a
+            >
+        </div>
+    </section>
+
+    <section id="artistas" class="placeholder-section">
+        <div class="container">
+            <h2>Artistas</h2>
+            <p>Próximamente más información sobre los artistas...</p>
+        </div>
+    </section>
+
+    <FreeEntry />
+
+    <section id="ubicacion" class="location-section">
+        <div class="container">
+            <h2>Ubicación</h2>
+            <p>El evento tendrá lugar en el corazón de Mollet:</p>
+            <p class="location-address">
+                <strong>Mercat Vell</strong><br />
+                Plaça Prat de la Riba, 6, 08100 Mollet del Vallès, Barcelona
+            </p>
+
+            <LocationMap />
+
+            <div class="transport-info">
+                <h3>¿Cómo llegar?</h3>
+                <p>
+                    <strong>Transporte público:</strong> Cerca de paradas de autobús
+                    y la estación de tren Mollet - Sant Fost (R2, R2N, R8).
+                </p>
+                <p>
+                    <strong>Parking:</strong> Hay aparcamiento en zonas cercanas
+                    (consulta disponibilidad y tarifas).
+                </p>
+            </div>
+        </div>
+    </section>
+</MainLayout>
+
+<style>
+    /* Estilos específicos de index.astro */
+    .hero {
+        position: relative;
+        /* Ajusta la altura si no quieres que ocupe toda la pantalla inicial menos el header */
+        /* Por ejemplo: height: calc(100vh - var(--header-height)); */
+        height: 100vh; /* Mantenido 100vh para efecto full screen inicial */
+        overflow: hidden;
+        margin-top: calc(
+            -1 * var(--header-height)
+        ); /* Compensa el padding-top de main para que el hero empiece arriba */
+        display: flex; /* Añadido para centrar contenido */
+        align-items: center; /* Añadido para centrar contenido */
+        justify-content: center; /* Añadido para centrar contenido */
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0; /* Equivalente a top, right, bottom, left = 0 */
+        z-index: 0;
+    }
+
+    .full-cover-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        animation: zoom-effect 20s infinite alternate ease-in-out; /* suavizado */
+    }
+
+    @keyframes zoom-effect {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.08);
+        } /* Ligero aumento */
+    }
+
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.7) 0%,
+            /* Más oscuro arriba */ rgba(var(--color-accent-dark-rgb), 0.6) 80%,
+            /* Tinte rojo oscuro abajo */ rgba(var(--color-dark-rgb), 0.9) 100%
+                /* Casi negro al final */
+        );
+        z-index: 1;
+    }
+
+    .content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 1rem;
+        color: var(--color-light);
+    }
+
+    h1 {
+        font-size: clamp(3rem, 10vw, 5.5rem); /* Un poco más grande */
+        margin: 0 0 1rem 0;
+        text-transform: uppercase;
+        line-height: 1.1; /* Más ajustado */
+        color: var(--color-light);
+        text-shadow: 0 0 15px var(--color-accent); /* Sombra más pronunciada */
+        font-weight: 900; /* Más grueso si la fuente lo permite */
+    }
+
+    h1 span {
+        color: var(--color-accent);
+        text-shadow: 0 0 20px var(--color-accent-light);
+    }
+
+    .event-date {
+        font-size: clamp(1.2rem, 4vw, 1.6rem); /* Tamaño adaptable */
+        margin-bottom: 1.5rem; /* Reducido */
+        color: var(--color-light);
+        text-shadow: 0 0 8px var(--color-accent-dark);
+        font-weight: 700;
+    }
+
+    .free-entry-text {
+        background-color: rgba(
+            var(--color-accent-dark-rgb),
+            0.8
+        ); /* Fondo semi-transparente */
+        color: var(--color-light);
+        padding: 0.8rem 1.8rem;
+        border-radius: 50px;
+        font-weight: bold;
+        margin-top: 2rem;
+        display: inline-block;
+        box-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.5);
+        border: 1px solid var(--color-accent);
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+    }
+
+    .hero-cta {
+        /* Estilo para el botón CTA en el hero */
+        margin-top: 2rem;
+        padding: 1rem 2.5rem;
+        background: var(--color-accent);
+        color: var(--color-light);
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition:
+            transform 0.3s,
+            box-shadow 0.3s;
+        display: inline-block; /* Asegura que el margin-top funcione */
+        border: none;
+    }
+    .hero-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.4);
+        color: var(--color-light); /* Mantiene el color del texto */
+    }
+
+    /* Estilos para secciones placeholder y otras */
+    .container {
+        /* Contenedor general para centrar contenido */
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1rem; /* Padding lateral */
+    }
+
+    .lineup-summary {
+        background: #080808; /* Fondo ligeramente distinto */
+        padding: 4rem 1rem;
+        text-align: center;
+    }
+    .lineup-summary h2 {
+        color: var(--color-accent);
+        margin-bottom: 2rem;
+        font-size: clamp(2rem, 6vw, 2.8rem);
+    }
+    .cta-button {
+        /* Botón reutilizable */
+        display: inline-block;
+        background: var(--color-accent);
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 2rem;
+        transition:
+            transform 0.3s,
+            box-shadow 0.3s;
+    }
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.4);
+        color: white;
+    }
+
+    .placeholder-section {
+        padding: 4rem 1rem;
+        text-align: center;
+        border-top: 1px solid var(--color-accent-dark); /* Separador visual */
+    }
+    .placeholder-section.location-section {
+        background-color: #050505; /* Fondo un poco diferente para la ubicación */
+    }
+    .placeholder-section h2 {
+        color: var(--color-accent-light);
+        margin-bottom: 1.5rem;
+        font-size: clamp(2rem, 6vw, 2.8rem);
+    }
+    .placeholder-section p {
+        color: var(--color-text-muted);
+        max-width: 600px;
+        margin: 0 auto 1rem auto;
+    }
+    .location-address {
+        font-size: 1.2rem;
+        color: var(--color-text);
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.8rem;
+        }
+        .event-date {
+            font-size: 1.1rem;
+        }
+        .free-entry-text {
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+        }
+        .hero-cta {
+            padding: 0.8rem 1.8rem;
+        }
+        .lineup-summary h2,
+        .placeholder-section h2 {
+            font-size: 1.8rem;
+        }
+        .cta-button {
+            font-size: 0.9rem;
+            padding: 0.7rem 1.5rem;
+        }
+    }
+    .location-section {
+        padding: 4rem 1rem;
+        text-align: center;
+        background-color: #050505;
+        border-top: 1px solid var(--color-accent-dark);
+    }
+    .location-section h2 {
+        /* ...otros estilos... */
+    }
+    .location-address {
+        /* ...otros estilos... */
+    }
+    .transport-info {
+        /* ...otros estilos... */
+    }
+</style>

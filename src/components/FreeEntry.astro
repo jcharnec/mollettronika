@@ -1,0 +1,120 @@
+---
+// src/components/FreeEntry.astro
+---
+
+<section id="info-entradas" class="free-entry">
+    <h2>Entrada Gratuita</h2>
+    <div class="info-cards">
+        <div class="card">
+            <h3>📍 Ubicación</h3>
+            <p>Mercat Vell, Mollet del Vallès</p>
+            <a href="#ubicacion" class="card-link">Ver mapa</a>
+        </div>
+        <div class="card">
+            <h3>⏰ Horario</h3>
+            <p>23 Abril 2025: 18:00 - 01:00</p>
+        </div>
+        <div class="card">
+            <h3>🎟️ Aforo</h3>
+            <p>Acceso libre hasta completar aforo.<br />¡Llega pronto!</p>
+        </div>
+    </div>
+    <div style="margin-top: 3rem;">
+        <div class="faq-item">
+            <h3>¿Necesito registrarme?</h3>
+            <p>No, el acceso es libre hasta completar aforo.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Habrá barra de bebidas?</h3>
+            <p>Sí, con precios populares (pago en efectivo/tarjeta).</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .free-entry {
+        background: #0a0a0a; /* Un poco menos negro que el fondo global */
+        color: white;
+        padding: 4rem 1rem;
+        text-align: center;
+    }
+    .free-entry h2 {
+        font-size: clamp(2rem, 6vw, 3rem);
+        color: var(--color-accent);
+        margin-bottom: 2.5rem;
+        text-transform: uppercase;
+    }
+    .info-cards {
+        display: flex;
+        gap: 1.5rem; /* Aumentado el gap */
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+    .card {
+        background: rgba(255, 0, 0, 0.05); /* Más sutil */
+        border: 1px solid var(--color-accent-dark); /* Borde más oscuro */
+        border-radius: 8px;
+        padding: 2rem; /* Más padding */
+        width: 100%;
+        max-width: 320px; /* Ligeramente más ancho */
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(var(--color-accent-dark-rgb), 0.2); /* Sombra al pasar el ratón */
+    }
+    .card h3 {
+        color: var(--color-accent-light);
+        margin-bottom: 1rem; /* Más espacio */
+        font-size: 1.4rem;
+    }
+    .card p {
+        color: var(--color-text);
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    .card-link {
+        display: inline-block;
+        margin-top: 1rem;
+        color: var(--color-accent);
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    .card-link:hover {
+        color: var(--color-accent-light);
+    }
+
+    /* Estilos básicos para FAQ si se incluye aquí */
+    .faq-item {
+        max-width: 600px;
+        margin: 1.5rem auto;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-left: 3px solid var(--color-accent);
+        text-align: left;
+    }
+    .faq-item h3 {
+        margin: 0 0 0.5rem 0;
+        color: var(--color-light);
+    }
+    .faq-item p {
+        margin: 0;
+        color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+        .info-cards {
+            gap: 1rem;
+        }
+        .card {
+            max-width: 90%;
+            padding: 1.5rem;
+        }
+        .free-entry h2 {
+            font-size: 2rem;
+        }
+    }
+</style>

@@ -1,0 +1,135 @@
+---
+// src/components/Header.astro
+---
+
+<header class="header">
+    <div class="container">
+        <a href="/" class="logo">
+            <img
+                src="/images/logo-mollettronika.jpeg"
+                alt="Logo Mollettronika"
+                height="60"
+                width="auto"
+                loading="eager"
+            />
+        </a>
+        <nav>
+            <a href="/lineup">Line Up</a>
+            <a href="/#artistas">Artistas</a>
+            <a href="/#info-entradas">Info Entradas</a>
+            <a href="/#ubicacion">Ubicación</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    :root {
+        --logo-height: 100px; /* Define la altura base del logo */
+        --header-height: calc(
+            var(--logo-height) + 1rem
+        ); /* Header se adapta al logo */
+    }
+
+    /* Estilos base del header */
+    .header {
+        background: var(--color-dark);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        border-bottom: 1px solid var(--color-accent-dark);
+        padding: 0.5rem 0;
+        min-height: var(--header-height); /* Usa la variable */
+    }
+
+    /* Contenedor flexible */
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        height: 100%;
+    }
+
+    /* Estilos específicos del logo */
+    .logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    .logo img {
+        height: var(--logo-height); /* Usa la variable */
+        width: auto;
+        max-width: 200px; /* Limita el ancho máximo */
+        transition: transform 0.3s ease;
+        object-fit: contain; /* Mantiene proporciones */
+    }
+
+    .logo:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Estilos de navegación */
+    nav {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    nav a {
+        color: var(--color-light);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease;
+        padding: 0.5rem 0;
+        border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover,
+    nav a.active {
+        color: var(--color-accent);
+        border-bottom-color: var(--color-accent);
+    }
+
+    /* Media queries responsive */
+    @media (max-width: 768px) {
+        :root {
+            --logo-height: 50px;
+        }
+        .container {
+            padding: 0 1rem;
+        }
+        nav {
+            gap: 0.8rem;
+        }
+        nav a {
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
+        }
+        .logo img {
+            max-width: 180px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        :root {
+            --logo-height: 40px;
+        }
+        nav {
+            gap: 0.5rem;
+        }
+        nav a {
+            font-size: 0.7rem;
+        }
+        .logo img {
+            max-width: 150px;
+        }
+    }
+</style>

@@ -1,0 +1,103 @@
+---
+// src/components/Countdown.astro
+const { targetDate = "2025-04-23T18:00:00" } = Astro.props; // Fecha del evento (consistente)
+---
+
+<div class="countdown">
+    <div>
+        <span id="days">00</span>
+        <small>Días</small>
+    </div>
+    <div>
+        <span id="hours">00</span>
+        <small>Horas</small>
+    </div>
+    <div>
+        <span id="minutes">00</span>
+        <small>Minutos</small>
+    </div>
+    <div>
+        <span id="seconds">00</span>
+        <small>Segundos</small>
+    </div>
+</div>
+
+<script define:vars={{ targetDate }}>
+    const countdownContainer = document.querySelector(".countdown");
+    // Usa la variable targetDate inyectada por Astro
+    const target = new Date(targetDate).getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = target - now;
+
+        if (diff <= 0) {
+            if (countdownContainer) {
+                countdownContainer.innerHTML = `<p style="color: var(--color-accent); font-size: 1.5rem; text-shadow: none;">¡El evento ha comenzado! 🎉</p>`;
+            }
+            clearInterval(intervalId); // Detiene el intervalo
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // Comprueba si los elementos existen antes de actualizar
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+
+        if (daysEl) daysEl.textContent = days.toString().padStart(2, "0");
+        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, "0");
+        if (minutesEl)
+            minutesEl.textContent = minutes.toString().padStart(2, "0");
+        if (secondsEl)
+            secondsEl.textContent = seconds.toString().padStart(2, "0");
+    }
+
+    // Ejecuta una vez al cargar y luego cada segundo
+    updateCountdown();
+    const intervalId = setInterval(updateCountdown, 1000);
+</script>
+
+<style>
+    .countdown {
+        display: flex;
+        gap: 1.5rem;
+        margin: 2rem 0;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .countdown div {
+        text-align: center;
+        min-width: 80px;
+    }
+    .countdown span {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #ff00ff; /* Mantenido el color fucsia original del countdown */
+        text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+    }
+    .countdown small {
+        display: block;
+        font-size: 0.8rem;
+        color: white;
+        text-transform: uppercase;
+    }
+    @media (max-width: 480px) {
+        .countdown {
+            gap: 1rem;
+        }
+        .countdown span {
+            font-size: 2rem;
+        }
+        .countdown small {
+            font-size: 0.7rem;
+        }
+    }
+</style>

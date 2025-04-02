@@ -1,0 +1,94 @@
+---
+import MainLayout from "../layouts/Layout.astro";
+import EventTimeline from "../components/EventTimeline.astro";
+
+const EVENT_DATE_DISPLAY = "23 Abril 2025";
+const EVENT_LOCATION = "Mercat Vell, Mollet";
+---
+
+<MainLayout title="Line Up | Mollettronika">
+    <section class="lineup-section">
+        <div class="container">
+            <h1 class="title">LINE UP</h1>
+            <h2 class="subtitle">{EVENT_DATE_DISPLAY} • {EVENT_LOCATION}</h2>
+
+            <EventTimeline />
+
+            <div class="cta-container">
+                <a href="/#ubicacion" class="cta-button">¿CÓMO LLEGAR?</a>
+            </div>
+        </div>
+    </section>
+</MainLayout>
+
+<style>
+    .lineup-section {
+        /* Eliminado padding-top si se maneja en Layout.astro */
+        padding: 4rem 1rem 4rem; /* Ajustado padding vertical */
+        background: linear-gradient(
+            to bottom,
+            #050000,
+            #1a0505,
+            #000000
+        ); /* Degradado sutil */
+        min-height: 80vh; /* Asegura algo de altura */
+        color: white;
+    }
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        color: var(--color-accent);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 900;
+    }
+    .subtitle {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: 3rem;
+        opacity: 0.9;
+        color: var(--color-text-muted);
+    }
+    .cta-container {
+        margin-top: 3rem;
+    }
+    .cta-button {
+        display: inline-block;
+        background: var(--color-accent);
+        color: white;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition:
+            transform 0.3s,
+            box-shadow 0.3s;
+        border: none;
+    }
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.4);
+        color: white; /* Mantiene color texto */
+    }
+
+    @media (max-width: 768px) {
+        .lineup-section {
+            padding: 3rem 1rem;
+        }
+        .title {
+            font-size: 2.2rem;
+        }
+        .subtitle {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .cta-button {
+            font-size: 0.9rem;
+            padding: 0.8rem 2rem;
+        }
+    }
+</style>
