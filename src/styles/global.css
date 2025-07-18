@@ -43,6 +43,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 main {
     padding-top: var(--header-height);

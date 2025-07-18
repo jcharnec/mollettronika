@@ -6,6 +6,26 @@ const EVENT_DATE_DISPLAY = "25 Abril 2025";
 const EVENT_LOCATION = "Mercat Vell, Mollet";
 ---
 
+<script>
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.2 }
+    );
+
+    // Espera a que el DOM esté listo y verifica:
+    document.addEventListener("DOMContentLoaded", () => {
+        const lineup = document.querySelector(".lineup-section");
+        if (lineup) observer.observe(lineup);
+    });
+</script>
+
 <MainLayout title="Line Up | Mollettronika">
     <section class="lineup-section">
         <div class="container">
@@ -28,6 +48,7 @@ const EVENT_LOCATION = "Mercat Vell, Mollet";
         min-height: 80vh;
         color: white;
     }
+
     .title {
         font-size: clamp(2.5rem, 8vw, 4rem);
         color: var(--color-accent);
@@ -45,24 +66,6 @@ const EVENT_LOCATION = "Mercat Vell, Mollet";
     .cta-container {
         margin-top: 3rem;
     }
-    .cta-button {
-        display: inline-block;
-        background: var(--color-accent);
-        color: white;
-        padding: 1rem 2.5rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        transition:
-            transform 0.3s,
-            box-shadow 0.3s;
-        border: none;
-    }
-    .cta-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.4);
-        color: white;
-    }
 
     @media (max-width: 768px) {
         .lineup-section {
@@ -79,5 +82,27 @@ const EVENT_LOCATION = "Mercat Vell, Mollet";
             font-size: 0.9rem;
             padding: 0.8rem 2rem;
         }
+    }
+    /* Centrado real */
+    .lineup-section .container {
+        margin: 0 auto;
+        padding: 0 1rem;
+        text-align: center;
+    }
+
+    /* Sombra suave al título */
+    .title {
+        text-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.6);
+    }
+
+    /* Fade‑in a la sección entera */
+    .lineup-section {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 0.8s;
+    }
+    .lineup-section.visible {
+        opacity: 1;
+        transform: none;
     }
 </style>
