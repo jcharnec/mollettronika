@@ -3,28 +3,24 @@
 ---
 
 <div class="timeline">
-    <!-- Primera actuación -->
     <div class="timeline-item">
         <div class="time">19:00 - 20:30</div>
         <div class="artist">SBK101</div>
         <div class="genre">Deep House</div>
     </div>
 
-    <!-- Segunda actuación -->
     <div class="timeline-item">
         <div class="time">20:30 - 22:00</div>
         <div class="artist">Soveroon b2b HotTape</div>
         <div class="genre">Techno</div>
     </div>
 
-    <!-- Tercera actuación -->
     <div class="timeline-item">
         <div class="time">22:00 - 23:30</div>
         <div class="artist">Carol NYX</div>
         <div class="genre">Psy Trance - Techno</div>
     </div>
 
-    <!-- Cuarta actuación -->
     <div class="timeline-item">
         <div class="time">23:30 - 01:00</div>
         <div class="artist">Rowsi b2b Didixx</div>
@@ -34,51 +30,59 @@
 
 <style>
     .timeline {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
-        padding: 2rem;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
-        border: 1px solid #ff0000;
+        padding: 3rem 1rem;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        border: 1px solid var(--color-accent);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
     }
+
     .timeline-item {
-        padding: 1.5rem;
-        margin-bottom: 1rem;
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid var(--color-accent);
+        background: rgba(255, 0, 0, 0.03);
         position: relative;
-        border-left: 3px solid #ff0000;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
     }
+
     .timeline-item:hover {
         background: rgba(255, 0, 0, 0.1);
-        transform: translateX(5px);
+        transform: translateX(6px);
     }
-    .timeline-item.highlight {
-        border-left-width: 5px;
-        background: rgba(255, 0, 0, 0.05);
-    }
+
     .time {
-        color: #ff0000;
+        color: var(--color-accent);
         font-weight: bold;
         font-size: 1.2rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
     }
+
     .artist {
         font-size: 1.8rem;
-        font-weight: bold;
-        margin-bottom: 0.3rem;
-        letter-spacing: 1px;
+        font-weight: 800;
+        color: var(--color-light);
+        margin-bottom: 0.2rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
     }
+
     .genre {
-        color: #aaa;
+        color: var(--color-text-muted);
         font-style: italic;
+        font-size: 1rem;
     }
 
     @media (max-width: 768px) {
         .timeline {
-            padding: 1rem;
+            padding: 2rem 1rem;
         }
+
         .artist {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
     }
 </style>

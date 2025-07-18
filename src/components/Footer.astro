@@ -3,7 +3,17 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer">
+<script>
+    const footer = document.querySelector(".fade-in-footer");
+
+    if (footer && !sessionStorage.getItem("footerSeen")) {
+        footer.classList.add("visible");
+        sessionStorage.setItem("footerSeen", "true");
+    } else if (footer) {
+        footer.classList.add("visible"); // Sin animación
+    }
+</script>
+<footer class="footer fade-in-footer">
     <div class="container">
         <div class="social-links">
             <a
@@ -31,8 +41,8 @@ const currentYear = new Date().getFullYear();
             © {currentYear} Mollettronika | Evento gratuito con aforo limitado.
         </p>
         <p class="credits">
-            Diseñado con ❤️ por <a href="https://github.com/jcharnec"
-                >HotaDev</a>
+            Diseñado con ❤️ por <a href="https://github.com/jcharnec">HotaDev</a
+            >
         </p>
     </div>
 </footer>
@@ -82,5 +92,16 @@ const currentYear = new Date().getFullYear();
         color: #666;
         font-size: 0.75rem;
         font-style: italic;
+    }
+    .fade-in-footer {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 1s ease,
+            transform 1s ease;
+    }
+    .fade-in-footer.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 </style>
