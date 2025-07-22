@@ -21,6 +21,24 @@ const { title } = Astro.props;
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap"
             rel="stylesheet"
         />
+        <script>
+            let lastScrollY = window.scrollY;
+            const header = document.querySelector(".hide-on-scroll");
+
+            window.addEventListener("scroll", () => {
+                if (!header) return;
+
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    // Scroll hacia abajo
+                    header.classList.add("header--hidden");
+                } else {
+                    // Scroll hacia arriba
+                    header.classList.remove("header--hidden");
+                }
+
+                lastScrollY = window.scrollY;
+            });
+        </script>
     </head>
 
     <body>

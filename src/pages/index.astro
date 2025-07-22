@@ -33,7 +33,25 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
             observer.observe(el);
         });
 </script>
+<script>
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.2 }
+    );
 
+    // Espera a que el DOM esté listo y verifica:
+    document.addEventListener("DOMContentLoaded", () => {
+        const lineup = document.querySelector(".lineup-section");
+        if (lineup) observer.observe(lineup);
+    });
+</script>
 <MainLayout title="Mollettronika | Festival de Música Electrónica">
     <section class="hero fade-in-bottom">
         <div class="hero-bg">
@@ -70,24 +88,18 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
             </a>
         </div>
     </section>
-
-    <section id="artistas" class="placeholder-section fade-in-right">
+    <section class="lineup-section placeholder-section fade-in-right">
         <div class="container">
-            <h2 class="section-title">Artistas Confirmados</h2>
-            <ul class="artist-list">
-                <li><strong>SBK101</strong> · Deep House</li>
-                <li><strong>Soveroon b2b HotTape</strong> · Techno</li>
-                <li><strong>Carol NYX</strong> · Psy Trance / Techno</li>
-                <li>
-                    <strong>Rowsi b2b Didixx</strong> · Hard Trance / Bounce
-                </li>
-            </ul>
+            <h2 class="section-title">Line Up</h2>
+            <h2 class="subtitle">{EVENT_DATE_DISPLAY} • {EVENT_LOCATION}</h2>
+
+            <EventTimeline />
+
             <div class="cta-container">
-                <a href="/lineup" class="cta-button">Ver Horarios Completos</a>
+                <a href="/#ubicacion" class="cta-button">¿CÓMO LLEGAR?</a>
             </div>
         </div>
     </section>
-
     <FreeEntry class="fade-in-left" />
 
     <section id="ubicacion" class="location-section fade-in-bottom">
@@ -235,27 +247,38 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
         box-shadow: 0 6px 20px rgba(var(--color-accent-rgb), 0.5);
     }
 
-    /* === ARTISTAS === */
-    .artist-summary {
-        background: #0a0a0a;
+    /* === LINE UP === */
+    .lineup-section {
+        background: linear-gradient(to bottom, #050000, #1a0505, #000000);
         padding: 4rem 1rem;
-        border-top: 1px solid var(--color-accent-dark);
+        color: white;
         text-align: center;
     }
 
-    .artist-list {
-        list-style: none;
-        padding: 0;
-        margin: 0 auto 2.5rem;
-        max-width: 600px;
-        font-size: 1.2rem;
-        color: var(--color-text);
-        line-height: 2.2;
+    .lineup-section .container {
+        max-width: 1000px;
+        margin: 0 auto;
     }
 
-    .artist-list li {
-        border-bottom: 1px dashed rgba(255, 0, 0, 0.2);
-        padding: 0.6rem 0;
+    .lineup-section .section-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        color: var(--color-accent);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.6);
+        margin-bottom: 0.5rem;
+    }
+
+    .lineup-section .subtitle {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        color: var(--color-text-muted);
+        opacity: 0.9;
+        margin-bottom: 3rem;
+    }
+
+    .lineup-section .cta-container {
+        margin-top: 3rem;
     }
 
     /* === UBICACIÓN === */
