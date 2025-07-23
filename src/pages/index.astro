@@ -53,7 +53,7 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
     });
 </script>
 <MainLayout title="Mollettronika | Festival de Música Electrónica">
-    <section class="hero fade-in-bottom">
+    <section id="inicio" class="hero fade-in-bottom">
         <div class="hero-bg">
             <picture>
                 <source srcset={fondoOptimizado.src} type="image/webp" />
@@ -88,7 +88,10 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
             </a>
         </div>
     </section>
-    <section class="lineup-section placeholder-section fade-in-right">
+    <section
+        id="lineup"
+        class="lineup-section placeholder-section fade-in-right"
+    >
         <div class="container">
             <h2 class="section-title">Line Up</h2>
             <h2 class="subtitle">{EVENT_DATE_DISPLAY} • {EVENT_LOCATION}</h2>
