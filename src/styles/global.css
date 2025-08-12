@@ -99,3 +99,64 @@ main > section + section {
 .hide-on-scroll {
     transition: transform 0.4s ease-in-out;
 }
+/* === VINILO GIRANDO EN EL HEADER === */
+.logo img {
+    height: var(--logo-height);
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+
+    /* animación */
+    animation: vinyl-rotate 6s linear infinite;
+    transform-origin: 50% 50%;
+    will-change: transform;
+
+    /* transición del hover que ya tenías */
+    transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+/* Accesibilidad: respetar reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .logo img {
+        animation: none;
+    }
+}
+
+@keyframes vinyl-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* === VINILO GIRANDO EN EL HEADER Al PASAR RATON=== */
+/* Estado normal sin animación */
+/*.logo img {
+    height: var(--logo-height);
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    transform-origin: 50% 50%;
+}*/
+
+/* Al hacer hover, empieza a girar y escalar */
+/*header .logo:hover img {
+    transform: scale(1.05);
+    animation: vinyl-rotate 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logo:hover img {
+        animation: none;
+    }
+}
+
+@keyframes vinyl-rotate {
+    to {
+        rotate: 360deg;
+    }
+}*/
