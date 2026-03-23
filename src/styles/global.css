@@ -59,6 +59,18 @@ main > section + section {
     margin-top: 3rem;
 }
 
+/* === ACCESIBILIDAD === */
+:focus-visible {
+    outline: 2px solid var(--color-accent-light);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--color-secondary-accent);
+    outline-offset: 4px;
+}
+
 /* === COMPONENTES REUTILIZABLES === */
 .container {
     max-width: 1000px;

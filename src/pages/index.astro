@@ -5,12 +5,50 @@ import EventTimeline from "../components/EventTimeline.astro";
 import FreeEntry from "../components/FreeEntry.astro";
 import FAQ from "../components/FAQ.astro";
 import LocationMap from "../components/LocationMap.astro";
+import { Image } from "astro:assets";
 import fondoOptimizado from "../assets/fondo-mollettronika.jpg";
 
 const EVENT_DATE = "2026-03-27T17:00:00";
+const EVENT_DATE_END = "2026-03-28T01:00:00";
 const EVENT_DATE_DISPLAY = "27 Marzo 2026";
 const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Mollettronika Festival",
+  "startDate": EVENT_DATE,
+  "endDate": EVENT_DATE_END,
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "Mercat Vell",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Plaça Prat de la Riba, 6",
+      "addressLocality": "Mollet del Vallès",
+      "postalCode": "08100",
+      "addressRegion": "Barcelona",
+      "addressCountry": "ES"
+    }
+  },
+  "image": [
+    "https://mollettronika.com/images/logo-mollettronika.png"
+  ],
+  "description": "Festival de música electrónica en Mollet del Vallès. Entrada libre hasta completar aforo.",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://mollettronika.com",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2024-01-01T00:00"
+  }
+};
 ---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
 <script>
     const observer = new IntersectionObserver(
@@ -55,17 +93,14 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
 <MainLayout title="Mollettronika | Festival de Música Electrónica">
     <section id="inicio" class="hero fade-in-bottom">
         <div class="hero-bg">
-            <picture>
-                <source srcset={fondoOptimizado.src} type="image/webp" />
-                <img
-                    src={fondoOptimizado.src}
-                    alt="Ambiente de fiesta electrónica Mollettronika"
-                    class="full-cover-img"
-                    width="1920"
-                    height="1080"
-                    loading="eager"
-                />
-            </picture>
+            <Image
+                src={fondoOptimizado}
+                alt="Ambiente de fiesta electrónica Mollettronika"
+                class="full-cover-img"
+                width={1920}
+                height={1080}
+                loading="eager"
+            />
         </div>
 
         <div class="overlay"></div>
@@ -104,6 +139,8 @@ const EVENT_LOCATION = "Mercat Vell, Mollet del Vallès";
         </div>
     </section>
     <FreeEntry class="fade-in-left" />
+
+    <FAQ />
 
     <section id="ubicacion" class="location-section fade-in-bottom">
         <div class="container location-grid">

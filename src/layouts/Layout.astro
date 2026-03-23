@@ -13,6 +13,20 @@ const { title } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
+        <meta name="description" content="Mollettronika, festival de música electrónica en Mollet del Vallès. Entrada gratuita. ¡Vive el mejor Techno y Hard Groove!" />
+        
+        <!-- Open Graph / Meta Cards -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="Festival de música electrónica en Mollet del Vallès. Entrada libre." />
+        <meta property="og:image" content="/images/logo-mollettronika.png" />
+        <meta property="og:url" content="https://mollettronika.com" />
+        
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content="Festival de música electrónica en Mollet del Vallès. Entrada libre." />
+        <meta name="twitter:image" content="/images/logo-mollettronika.png" />
 
         <link rel="icon" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

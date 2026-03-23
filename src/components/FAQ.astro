@@ -4,12 +4,111 @@
 
 <section class="faq">
     <h2>Preguntas Frecuentes</h2>
-    <div class="faq-item">
-        <h3>¿Necesito registrarme?</h3>
-        <p>No, el acceso es libre hasta completar aforo.</p>
-    </div>
-    <div class="faq-item">
-        <h3>¿Habrá barra de bebidas?</h3>
-        <p>Sí, con precios populares (efectivo/tarjeta).</p>
+    <div class="faq-container">
+        <details class="faq-item" name="faq">
+            <summary>¿Necesito registrarme?</summary>
+            <div class="faq-content">
+                <p>No, el acceso es libre hasta completar aforo.</p>
+                <p>Importante: Traer DNI para la venta de bebidas alcohólicas.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item" name="faq">
+            <summary>¿Habrá barra de bebidas?</summary>
+            <div class="faq-content">
+                <p>Sí, con precios populares (efectivo/tarjeta).</p>
+                <p>No se podrá acceder con bebidas de fuera.</p>
+            </div>
+        </details>
     </div>
 </section>
+
+<style>
+    .faq {
+        padding: 4rem 1rem;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .faq h2 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: var(--color-light);
+        margin-bottom: 2.5rem;
+        text-transform: uppercase;
+    }
+
+    .faq-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .faq-item {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        text-align: left;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .faq-item[open] {
+        border-color: var(--color-accent);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .faq-item summary {
+        padding: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--color-light);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none; /* Safári */
+    }
+
+    .faq-item summary::-webkit-details-marker {
+        display: none; /* Chrome */
+    }
+
+    .faq-item summary::after {
+        content: '+';
+        font-size: 1.5rem;
+        color: var(--color-accent);
+        transition: transform 0.3s ease;
+    }
+
+    .faq-item[open] summary::after {
+        content: '−';
+        transform: rotate(180deg);
+    }
+
+    .faq-content {
+        padding: 0 1.5rem 1.5rem;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    .faq-content p {
+        margin-bottom: 0.5rem;
+    }
+
+    .faq-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
